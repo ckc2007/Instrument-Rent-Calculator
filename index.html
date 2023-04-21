@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculate Credit</title>
+    <script>
+      function calculateCredit() {
+        let quarters = parseInt(document.getElementById("quarters").value);
+        let rent = parseInt(document.getElementById("rent").value);
+        let instrumentValue = parseInt(
+          document.getElementById("instrumentValue").value
+        );
+        let count = 0;
+        let credit = 0;
+        let remainingBalance = instrumentValue;
+        let arr = [];
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = ""; // Clear previous output
+        for (let i = 1; i < quarters; i++) {
+          if (i < 5) {
+            credit += rent * 1;
+            remainingBalance = instrumentValue - credit;
+            count++;
+          } else if (i < 9) {
+            credit += rent * 0.8;
+            remainingBalance = instrumentValue - credit;
+            count++;
+          } else {
+            credit += rent * 0.6;
+            remainingBalance = instrumentValue - credit;
+            count++;
+          }
+          solution = [count, credit, remainingBalance];
+          arr.push(solution);
+          // outputDiv.innerHTML += solution.join(", ") + "<br>";
+        }
+        outputDiv.innerHTML += arr.join("<br>") + "<br>";
+        let copy = arr.slice();
+        trimArr(copy);
+      }
+
+      function trimArr(arr) {
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML += "Trimmed Array:<br>";
+        for (let i = arr.length - 1; i >= 0; i--) {
+          if (arr[i][2] < 0) {
+            arr.splice(i, 1);
+          }
+        }
+        outputDiv.innerHTML += arr.join("<br>") + "<br>";
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <label for="quarters">Quarters:</label>
+      <input type="number" id="quarters" name="quarters" value="15" /><br />
+
+      <label for="rent">Rent:</label>
+      <input type="number" id="rent" name="rent" value="100" /><br />
+
+      <label for="instrumentValue">Instrument Value:</label>
+      <input
+        type="number"
+        id="instrumentValue"
+        name="instrumentValue"
+        value="1000"
+      /><br />
+
+      <input type="button" value="Calculate" onclick="calculateCredit()" />
+    </form>
+    <div id="output"></div>
+  </body>
+</html>
