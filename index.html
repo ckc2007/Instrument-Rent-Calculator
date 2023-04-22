@@ -15,7 +15,9 @@
         let arr = [];
         let outputDiv = document.getElementById("output");
         outputDiv.innerHTML = ""; // Clear previous output
-        for (let i = 1; i < quarters; i++) {
+        let startDate = document.getElementById("startDate").value;
+        console.log(startDate);
+        for (let i = 1; i <= quarters; i++) {
           if (i < 5) {
             credit += rent * 1;
             remainingBalance = instrumentValue - credit;
@@ -29,20 +31,72 @@
             remainingBalance = instrumentValue - credit;
             count++;
           }
-          solution = [count, credit, remainingBalance];
+          let quarterStart = getQuarterStart(startDate, i - 1);
+          console.log(quarterStart);
+          solution = [
+            count,
+            quarterStart,
+            credit.toFixed(2),
+            remainingBalance.toFixed(2),
+          ];
           arr.push(solution);
-          // outputDiv.innerHTML += solution.join(", ") + "<br>";
         }
         outputDiv.innerHTML += arr.join("<br>") + "<br>";
         let copy = arr.slice();
         trimArr(copy);
       }
 
+      function getNumDaysInQuarterByDate(date) {
+        let currentMonth = date.getMonth();
+        let numDaysInQuarter;
+        if (currentMonth >= 0 && currentMonth <= 2) {
+          const startYear = date.getFullYear();
+          const isLeapYear =
+            (startYear % 4 == 0 && startYear % 100 != 0) ||
+            startYear % 400 == 0;
+          numDaysInQuarter = isLeapYear ? 91 : 90;
+        } else if (currentMonth >= 3 && currentMonth <= 5) {
+          numDaysInQuarter = 91;
+        } else {
+          numDaysInQuarter = 92;
+        }
+        console.log(currentMonth);
+        console.log(numDaysInQuarter);
+      }
+      function getQuarterStart(startDate, quarter) {
+        let date = new Date(startDate);
+        let offset = -60000 * date.getTimezoneOffset();
+        let epoch = +date - offset;
+        // <!-- getNumDaysInQuarterByDate() - because each quarter has a different number of days -->
+
+        let numMillisecondsInQuarter = numDaysInQuarter * 24 * 60 * 60 * 1000;
+        let newEpoch = epoch + quarter * numMillisecondsInQuarter;
+        let newDate = new Date(newEpoch);
+
+        return newDate.toLocaleDateString("en-US");
+        // const startYear = newDate.getFullYear();
+        // const startMonth = (quarter - 1) * 3;
+        // const startDay = newDate.getDate();
+
+        // const numMillisecondsInQuarter = numDaysInQuarter * 24 * 60 * 60 * 1000;
+
+        // const startQuarter = new Date(startYear, startMonth, startDay);
+        // const endQuarter = new Date(
+        //   startQuarter.getTime() + numMillisecondsInQuarter
+        // );
+
+        // return (
+        //   startQuarter.toLocaleDateString("en-US") +
+        //   " - " +
+        //   endQuarter.toLocaleDateString("en-US")
+        // );
+      }
+
       function trimArr(arr) {
         let outputDiv = document.getElementById("output");
         outputDiv.innerHTML += "Trimmed Array:<br>";
         for (let i = arr.length - 1; i >= 0; i--) {
-          if (arr[i][2] < 0) {
+          if (arr[i][3] < 0) {
             arr.splice(i, 1);
           }
         }
@@ -52,6 +106,9 @@
   </head>
   <body>
     <form>
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" /><br />
+
       <label for="quarters">Quarters:</label>
       <input type="number" id="quarters" name="quarters" value="15" /><br />
 
