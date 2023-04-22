@@ -16,7 +16,12 @@
         let outputDiv = document.getElementById("output");
         outputDiv.innerHTML = ""; // Clear previous output
         let startDate = document.getElementById("startDate").value;
-        console.log(startDate);
+        // let quarterStart = new Date(startDate).toLocaleDateString("en-US");
+        let date = new Date(startDate);
+        let offset = -60000 * date.getTimezoneOffset();
+        let epoch = +date - offset;
+        let quarterStart = new Date(epoch).toLocaleDateString("en-US");
+        // console.log(startDate);
         for (let i = 1; i <= quarters; i++) {
           if (i < 5) {
             credit += rent * 1;
@@ -31,8 +36,8 @@
             remainingBalance = instrumentValue - credit;
             count++;
           }
-          let quarterStart = getQuarterStart(startDate, i - 1);
-          console.log(quarterStart);
+
+          // console.log(quarterStart);
           solution = [
             count,
             quarterStart,
@@ -40,6 +45,7 @@
             remainingBalance.toFixed(2),
           ];
           arr.push(solution);
+          quarterStart = getQuarterStart(quarterStart);
         }
         outputDiv.innerHTML += arr.join("<br>") + "<br>";
         let copy = arr.slice();
@@ -62,34 +68,21 @@
         }
         console.log(currentMonth);
         console.log(numDaysInQuarter);
+        return numDaysInQuarter;
       }
-      function getQuarterStart(startDate, quarter) {
+
+      function getQuarterStart(startDate) {
         let date = new Date(startDate);
         let offset = -60000 * date.getTimezoneOffset();
         let epoch = +date - offset;
+        let offsetDate = new Date(epoch);
         // <!-- getNumDaysInQuarterByDate() - because each quarter has a different number of days -->
-
+        let numDaysInQuarter = getNumDaysInQuarterByDate(offsetDate);
         let numMillisecondsInQuarter = numDaysInQuarter * 24 * 60 * 60 * 1000;
-        let newEpoch = epoch + quarter * numMillisecondsInQuarter;
+        let newEpoch = epoch + numMillisecondsInQuarter;
         let newDate = new Date(newEpoch);
 
         return newDate.toLocaleDateString("en-US");
-        // const startYear = newDate.getFullYear();
-        // const startMonth = (quarter - 1) * 3;
-        // const startDay = newDate.getDate();
-
-        // const numMillisecondsInQuarter = numDaysInQuarter * 24 * 60 * 60 * 1000;
-
-        // const startQuarter = new Date(startYear, startMonth, startDay);
-        // const endQuarter = new Date(
-        //   startQuarter.getTime() + numMillisecondsInQuarter
-        // );
-
-        // return (
-        //   startQuarter.toLocaleDateString("en-US") +
-        //   " - " +
-        //   endQuarter.toLocaleDateString("en-US")
-        // );
       }
 
       function trimArr(arr) {
