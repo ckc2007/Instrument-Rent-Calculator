@@ -32,3 +32,7 @@ THEN I am presented with a list of payments, payment dates, credit accrued, and 
 ## Link to Deployed Site
 
 ![https://ckc2007.github.io/Instrument-Rent-Calculator/]
+
+```
+deployed site
+```
