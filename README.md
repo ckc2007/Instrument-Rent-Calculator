@@ -6,7 +6,8 @@ A custom instrument rental calculator for Jan Hampton Violins
 
 ## Description
 
-```A simple rent calculator that takes in user input for start date, number of payment quarters, rent amount and instrument value and returns a list of the number of payments, dates, credit amount and payoff amount to payoff the instrument rental.
+```
+A simple rent calculator that takes in user input for start date, number of payment quarters, rent amount and instrument value and returns a list of the number of payments, dates, credit amount and payoff amount to payoff the instrument rental.
 
 ```
 
