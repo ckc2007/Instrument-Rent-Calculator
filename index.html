@@ -2,29 +2,46 @@
 <html>
   <head>
     <title>Calculate Credit</title>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
   </head>
   <body>
-    <form>
-      <label for="startDate">Start Date:</label>
-      <input type="date" id="startDate" name="startDate" /><br />
+    <header>
+      <h1>Jan Hampton Violins</h1>
+      <h2>Rental Credit Calculator</h2>
+    </header>
+    <div class="container">
+      <div class="form-container">
+        <form>
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" name="startDate" /><br />
 
-      <label for="quarters">Quarters:</label>
-      <input type="number" id="quarters" name="quarters" value="15" /><br />
+          <label for="quarters">Quarters:</label>
+          <input type="number" id="quarters" name="quarters" value="15" /><br />
 
-      <label for="rent">Rent:</label>
-      <input type="number" id="rent" name="rent" value="100" /><br />
+          <label for="rent">Rent:</label>
+          <input type="number" id="rent" name="rent" value="100" /><br />
 
-      <label for="instrumentValue">Instrument Value:</label>
-      <input
-        type="number"
-        id="instrumentValue"
-        name="instrumentValue"
-        value="1000"
-      /><br />
+          <label for="instrumentValue">Instrument Value:</label>
+          <input
+            type="number"
+            id="instrumentValue"
+            name="instrumentValue"
+            value="1000"
+          /><br />
 
-      <input type="button" value="Calculate" onclick="calculateCredit()" />
-    </form>
-    <div id="output"></div>
+          <input
+            id="submitBtn"
+            type="button"
+            value="Calculate"
+            onclick="calculateCredit()"
+          />
+        </form>
+      </div>
+      <div class="output-container" id="output">
+        <div id="output"></div>
+      </div>
+    </div>
+
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

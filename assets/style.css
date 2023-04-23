@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+header {
+  background-color: rgb(156, 252, 255);
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+form {
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+}
+
+form label {
+  margin-bottom: 10px;
+}
+
+form input[type="date"],
+form input[type="number"] {
+  padding: 10px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  border: solid rgba(207, 207, 207, 0.787);
+  box-shadow: 0px 0px 5px #ccc;
+  width: 200px;
+  text-align: center;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="date"]:hover {
+  border-width: 110%;
+  border-color: aqua;
+  font-size: 110%;
+}
+
+#submitBtn {
+  border-left: 1px solid black;
+  border-radius: 15px;
+  background-color: #06aed5;
+  color: white;
+  margin-top: 5px;
+}
+
+#submitBtn:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+#output {
+  text-align: center;
+  line-height: 1.5;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+#output div:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#output div:nth-child(odd) {
+  background-color: #fff;
+}
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.form-container,
+.output-container {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
