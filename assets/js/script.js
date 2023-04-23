@@ -1,6 +1,7 @@
 function calculateCredit() {
   let quarters = parseInt(document.getElementById("quarters").value);
-  let rent = parseInt(document.getElementById("rent").value);
+  // let rent = parseInt(document.getElementById("rent").value);
+  let rent = document.querySelector('input[name="instrument"]:checked').value;
   let instrumentValue = parseInt(
     document.getElementById("instrumentValue").value
   );
