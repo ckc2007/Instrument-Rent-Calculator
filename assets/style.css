@@ -68,12 +68,12 @@ input[type="date"]:hover {
   padding: 5px;
 }
 
-#output div:nth-child(even) {
-  background-color: #f2f2f2;
+#output-con div:nth-child(even) {
+  background-color: #ede9e9;
 }
 
-#output div:nth-child(odd) {
-  background-color: #fff;
+#output-con div:nth-child(odd) {
+  background-color: rgb(250, 246, 246);
 }
 .container {
   display: flex;
