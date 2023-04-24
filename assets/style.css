@@ -94,3 +94,15 @@ table th,
 table td {
   padding: 0 20px;
 }
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .form-container,
+  .output-container {
+    width: 100%;
+  }
+}
