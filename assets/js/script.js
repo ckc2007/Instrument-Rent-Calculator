@@ -21,7 +21,12 @@ function calculateCredit() {
 
   // Create a header row and add it to the table
   let headerRow = table.insertRow();
-  let headerCells = ["Payment #", "Payment Date", "Credit Accrued", "Amount Left to Payoff"];
+  let headerCells = [
+    "Payment #",
+    "Payment Date",
+    "Credit Accrued",
+    "Amount Left to Payoff",
+  ];
   for (let i = 0; i < headerCells.length; i++) {
     let cell = headerRow.insertCell();
     cell.textContent = headerCells[i];
@@ -42,22 +47,23 @@ function calculateCredit() {
       remainingBalance = instrumentValue - credit;
       count++;
     }
+    if (remainingBalance >= 0) {
+      solution = [
+        count,
+        quarterStart,
+        credit.toFixed(2),
+        remainingBalance.toFixed(2),
+      ];
+      arr.push(solution);
+      quarterStart = getQuarterStart(quarterStart);
 
-    solution = [
-      count,
-      quarterStart,
-      credit.toFixed(2),
-      remainingBalance.toFixed(2),
-    ];
-    arr.push(solution);
-    quarterStart = getQuarterStart(quarterStart);
-
-    // Create a new row and add it to the table
-    let row = table.insertRow();
-    let cells = solution;
-    for (let j = 0; j < cells.length; j++) {
-      let cell = row.insertCell();
-      cell.textContent = cells[j];
+      // Create a new row and add it to the table
+      let row = table.insertRow();
+      let cells = solution;
+      for (let j = 0; j < cells.length; j++) {
+        let cell = row.insertCell();
+        cell.textContent = cells[j];
+      }
     }
   }
 
@@ -65,7 +71,6 @@ function calculateCredit() {
   outputDiv.innerHTML = "";
   outputDiv.appendChild(table);
 }
-
 
 function getNumDaysInQuarterByDate(date) {
   let currentMonth = date.getMonth();
@@ -99,14 +104,14 @@ function getQuarterStart(startDate) {
   return newDate.toLocaleDateString("en-US");
 }
 
-function trimArr(arr) {
-  let outputDiv = document.getElementById("output");
-  outputDiv.innerHTML +=
-    "Payoff Schedule:<br>Payment #, Payment Date, Credit Accrued, Amount left to payoff<br>";
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if (arr[i][3] < 0) {
-      arr.splice(i, 1);
-    }
-  }
-  outputDiv.innerHTML += arr.join("<br>") + "<br>";
-}
+// function trimArr(arr) {
+//   let outputDiv = document.getElementById("output");
+//   outputDiv.innerHTML +=
+//     "Payoff Schedule:<br>Payment #, Payment Date, Credit Accrued, Amount left to payoff<br>";
+//   for (let i = arr.length - 1; i >= 0; i--) {
+//     if (arr[i][3] < 0) {
+//       arr.splice(i, 1);
+//     }
+//   }
+//   outputDiv.innerHTML += arr.join("<br>") + "<br>";
+// }
