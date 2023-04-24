@@ -1,6 +1,5 @@
 function calculateCredit() {
   let quarters = parseInt(document.getElementById("quarters").value);
-  // let rent = parseInt(document.getElementById("rent").value);
   let rent = document.querySelector('input[name="instrument"]:checked').value;
   let instrumentValue = parseInt(
     document.getElementById("instrumentValue").value
@@ -12,12 +11,23 @@ function calculateCredit() {
   let outputDiv = document.getElementById("output");
   outputDiv.innerHTML = ""; // Clear previous output
   let startDate = document.getElementById("startDate").value;
-  // let quarterStart = new Date(startDate).toLocaleDateString("en-US");
   let date = new Date(startDate);
   let offset = -60000 * date.getTimezoneOffset();
   let epoch = +date - offset;
   let quarterStart = new Date(epoch).toLocaleDateString("en-US");
-  // console.log(startDate);
+
+  // Create an empty HTML table
+  let table = document.createElement("table");
+
+  // Create a header row and add it to the table
+  let headerRow = table.insertRow();
+  let headerCells = ["Payment #", "Payment Date", "Credit Accrued", "Amount Left to Payoff"];
+  for (let i = 0; i < headerCells.length; i++) {
+    let cell = headerRow.insertCell();
+    cell.textContent = headerCells[i];
+  }
+
+  // Populate the table rows with data
   for (let i = 1; i <= quarters; i++) {
     if (i < 5) {
       credit += rent * 1;
@@ -33,7 +43,6 @@ function calculateCredit() {
       count++;
     }
 
-    // console.log(quarterStart);
     solution = [
       count,
       quarterStart,
@@ -42,11 +51,21 @@ function calculateCredit() {
     ];
     arr.push(solution);
     quarterStart = getQuarterStart(quarterStart);
+
+    // Create a new row and add it to the table
+    let row = table.insertRow();
+    let cells = solution;
+    for (let j = 0; j < cells.length; j++) {
+      let cell = row.insertCell();
+      cell.textContent = cells[j];
+    }
   }
-  // outputDiv.innerHTML += arr.join("<br>") + "<br>";
-  let copy = arr.slice();
-  trimArr(copy);
+
+  // Insert the table into the output container
+  outputDiv.innerHTML = "";
+  outputDiv.appendChild(table);
 }
+
 
 function getNumDaysInQuarterByDate(date) {
   let currentMonth = date.getMonth();
