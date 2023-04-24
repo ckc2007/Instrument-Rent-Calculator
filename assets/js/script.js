@@ -1,3 +1,6 @@
+const copyButton = document.getElementById("copy-button");
+let outputDiv = document.getElementById("output");
+
 function calculateCredit() {
   let quarters = parseInt(document.getElementById("quarters").value);
   let rent = document.querySelector('input[name="instrument"]:checked').value;
@@ -8,7 +11,7 @@ function calculateCredit() {
   let credit = 0;
   let remainingBalance = instrumentValue;
   let arr = [];
-  let outputDiv = document.getElementById("output");
+
   outputDiv.innerHTML = ""; // Clear previous output
   let startDate = document.getElementById("startDate").value;
   let date = new Date(startDate);
@@ -115,3 +118,16 @@ function getQuarterStart(startDate) {
 //   }
 //   outputDiv.innerHTML += arr.join("<br>") + "<br>";
 // }
+
+copyButton.addEventListener("click", () => {
+  const textToCopy = outputDiv.innerText;
+
+  navigator.clipboard
+    .writeText(textToCopy)
+    .then(() => {
+      console.log(`Copied ${textToCopy} to clipboard`);
+    })
+    .catch((err) => {
+      console.error(`Error copying to clipboard: ${err}`);
+    });
+});

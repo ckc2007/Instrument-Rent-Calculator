@@ -48,10 +48,15 @@ input[type="date"]:hover {
   border-color: aqua;
   font-size: 110%;
 }
-.copy-button {
+
+#output-con {
+  position: relative;
+}
+
+#copyButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
 }
 
 #submitBtn {
