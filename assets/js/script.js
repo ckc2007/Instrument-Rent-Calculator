@@ -107,20 +107,8 @@ function getQuarterStart(startDate) {
   return newDate.toLocaleDateString("en-US");
 }
 
-// function trimArr(arr) {
-//   let outputDiv = document.getElementById("output");
-//   outputDiv.innerHTML +=
-//     "Payoff Schedule:<br>Payment #, Payment Date, Credit Accrued, Amount left to payoff<br>";
-//   for (let i = arr.length - 1; i >= 0; i--) {
-//     if (arr[i][3] < 0) {
-//       arr.splice(i, 1);
-//     }
-//   }
-//   outputDiv.innerHTML += arr.join("<br>") + "<br>";
-// }
-
 copyButton.addEventListener("click", () => {
-  const textToCopy = outputDiv.innerText;
+  const textToCopy = outputDiv.innerText.trim();
 
   navigator.clipboard
     .writeText(textToCopy)
