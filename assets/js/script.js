@@ -110,8 +110,11 @@ function getQuarterStart(startDate) {
 copyButton.addEventListener("click", () => {
   const textToCopy = outputDiv.innerText.trim();
 
+  // Replace table delimiters with commas
+  const textWithCommas = textToCopy.replace(/\s\s+/g, ", ");
+
   navigator.clipboard
-    .writeText(textToCopy)
+    .writeText(textWithCommas)
     .then(() => {
       console.log(`Copied ${textToCopy} to clipboard`);
     })
