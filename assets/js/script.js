@@ -111,10 +111,13 @@ copyButton.addEventListener("click", () => {
   const textToCopy = outputDiv.innerText.trim();
 
   // Replace table delimiters with commas
-  const textWithCommas = textToCopy.replace(/\s\s+/g, ", ");
+  // const textWithCommas = textToCopy.replace(/\t/g, ', ').replace(/\n/g, '; ');
+  const textWithCommasAndRows = textToCopy
+    .replace(/\t/g, ", ")
+    .replace(/\n/g, ",\n");
 
   navigator.clipboard
-    .writeText(textWithCommas)
+    .writeText(textWithCommasAndRows)
     .then(() => {
       console.log(`Copied ${textToCopy} to clipboard`);
     })
