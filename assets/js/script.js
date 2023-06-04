@@ -3,7 +3,9 @@ let outputDiv = document.getElementById("output");
 
 function calculateCredit() {
   let quarters = parseInt(document.getElementById("quarters").value);
-  let rent = document.querySelector('input[name="instrument"]:checked').value;
+  let rent = parseInt(
+    document.querySelector('input[name="instrument"]:checked').value
+  );
   let instrumentValue = parseInt(
     document.getElementById("instrumentValue").value
   );
@@ -18,6 +20,30 @@ function calculateCredit() {
   let offset = -60000 * date.getTimezoneOffset();
   let epoch = +date - offset;
   let quarterStart = new Date(epoch).toLocaleDateString("en-US");
+
+  // Adjust starting credit based on checkbox and instrument selection
+  let rentBeforeMay = document.getElementById("rentBeforeMay").checked;
+  let selectedInstrument = document.querySelector(
+    'input[name="instrument"]:checked'
+  ).id;
+  let startingCredit = 0;
+
+  if (rentBeforeMay) {
+    if (selectedInstrument === "violin") {
+      startingCredit = -27;
+    } else if (selectedInstrument === "viola") {
+      startingCredit = -15;
+    } else if (selectedInstrument === "cello") {
+      startingCredit = -24;
+    } else if (selectedInstrument === "bass") {
+      startingCredit = -24;
+    }
+  }
+
+  // Apply starting credit
+  credit += startingCredit;
+  remainingBalance = instrumentValue - credit;
+  count++;
 
   // Create an empty HTML table
   let table = document.createElement("table");
