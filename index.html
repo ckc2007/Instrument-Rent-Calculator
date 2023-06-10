@@ -24,9 +24,6 @@
           <label for="quarters">Quarters:</label>
           <input type="number" id="quarters" name="quarters" value="30" /><br />
 
-          <!-- <label for="rent">Rent:</label>
-          <input type="number" id="rent" name="rent" value="100" /><br /> -->
-
           <label for="instrument">Instrument Rent:</label><br />
           <input type="radio" id="violin" name="instrument" value="63" />
           <label for="violin">Violin: $63/quarter</label><br />
@@ -99,32 +96,6 @@
         <button class="calculator-button" onclick="addToInput('/')">/</button>
       </div>
     </div>
-
-    <script>
-      // Calculator functionality
-      function addToInput(value) {
-        const inputElement = document.getElementById("calculator-input");
-        inputElement.value += value;
-      }
-
-      function clearInput() {
-        const inputElement = document.getElementById("calculator-input");
-        inputElement.value = "";
-      }
-
-      function calculate() {
-        const inputElement = document.getElementById("calculator-input");
-        let result = eval(inputElement.value);
-        // Round the result to two decimal places
-        result = Math.round(result * 100) / 100;
-        inputElement.value = result;
-      }
-
-      function addToInput(value) {
-        const inputElement = document.getElementById("calculator-input");
-        inputElement.value += value;
-      }
-    </script>
 
     <script src="./assets/js/script.js"></script>
   </body>

@@ -133,6 +133,30 @@ function getQuarterStart(startDate) {
   return newDate.toLocaleDateString("en-US");
 }
 
+// Calculator functionality
+function addToInput(value) {
+  const inputElement = document.getElementById("calculator-input");
+  inputElement.value += value;
+}
+
+function clearInput() {
+  const inputElement = document.getElementById("calculator-input");
+  inputElement.value = "";
+}
+
+function calculate() {
+  const inputElement = document.getElementById("calculator-input");
+  let result = eval(inputElement.value);
+  // Round the result to two decimal places
+  result = Math.round(result * 100) / 100;
+  inputElement.value = result;
+}
+
+function addToInput(value) {
+  const inputElement = document.getElementById("calculator-input");
+  inputElement.value += value;
+}
+
 copyButton.addEventListener("click", () => {
   const textToCopy = outputDiv.innerText.trim();
 
