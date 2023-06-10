@@ -14,7 +14,8 @@
       <div class="form-container">
         <form>
           <input type="checkbox" id="rentBeforeMay" name="rentBeforeMay" />
-          <label for="rentBeforeMay">Started Renting Before May 1st, 2023?</label
+          <label for="rentBeforeMay"
+            >Started Renting Before May 1st, 2023?</label
           ><br />
 
           <label for="startDate">Start Date:</label>
@@ -43,7 +44,11 @@
             name="instrumentValue"
             value="1000"
           /><br />
-          <p>*If you wish to see the total amount left to payoff after 6% sales tax on the value of the instrument, please enter the instrument value multiplied by 1.06 above</p>
+          <p>
+            *If you wish to see the total amount left to payoff after 6% sales
+            tax on the value of the instrument, please enter the instrument
+            value multiplied by 1.06 above
+          </p>
 
           <input
             id="submitBtn"
@@ -58,6 +63,68 @@
         <button id="copy-button">Copy Text</button>
       </div>
     </div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        id="calculator-input"
+        class="calculator-input"
+        readonly
+      />
+    </div>
+    <div class="calculator-container">
+      <div>
+        <button class="calculator-button" onclick="addToInput(7)">7</button>
+        <button class="calculator-button" onclick="addToInput(8)">8</button>
+        <button class="calculator-button" onclick="addToInput(9)">9</button>
+        <button class="calculator-button" onclick="addToInput('+')">+</button>
+      </div>
+      <div>
+        <button class="calculator-button" onclick="addToInput(4)">4</button>
+        <button class="calculator-button" onclick="addToInput(5)">5</button>
+        <button class="calculator-button" onclick="addToInput(6)">6</button>
+        <button class="calculator-button" onclick="addToInput('-')">-</button>
+      </div>
+      <div>
+        <button class="calculator-button" onclick="addToInput(1)">1</button>
+        <button class="calculator-button" onclick="addToInput(2)">2</button>
+        <button class="calculator-button" onclick="addToInput(3)">3</button>
+        <button class="calculator-button" onclick="addToInput('*')">*</button>
+      </div>
+      <div>
+        <button class="calculator-button" onclick="addToInput(0)">0</button>
+        <button class="calculator-button" onclick="addToInput('.')">.</button>
+        <button class="calculator-button" onclick="clearInput()">C</button>
+        <button class="calculator-button" onclick="calculate()">=</button>
+        <button class="calculator-button" onclick="addToInput('/')">/</button>
+      </div>
+    </div>
+
+    <script>
+      // Calculator functionality
+      function addToInput(value) {
+        const inputElement = document.getElementById("calculator-input");
+        inputElement.value += value;
+      }
+
+      function clearInput() {
+        const inputElement = document.getElementById("calculator-input");
+        inputElement.value = "";
+      }
+
+      function calculate() {
+        const inputElement = document.getElementById("calculator-input");
+        let result = eval(inputElement.value);
+        // Round the result to two decimal places
+        result = Math.round(result * 100) / 100;
+        inputElement.value = result;
+      }
+
+      function addToInput(value) {
+        const inputElement = document.getElementById("calculator-input");
+        inputElement.value += value;
+      }
+    </script>
 
     <script src="./assets/js/script.js"></script>
   </body>
