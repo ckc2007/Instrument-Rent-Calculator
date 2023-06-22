@@ -65,23 +65,24 @@ function calculateCredit() {
     if (i < 5) {
       credit += rent * 1;
       remainingBalance = instrumentValue - credit;
-      count++;
+      
     } else if (i < 9) {
       credit += rent * 0.8;
       remainingBalance = instrumentValue - credit;
-      count++;
+      
     } else {
       credit += rent * 0.6;
       remainingBalance = instrumentValue - credit;
-      count++;
+      
     }
     if (remainingBalance >= 0) {
       solution = [
-        count,
+        count + 1, // Increment count after assigning the value
         quarterStart,
         credit.toFixed(2),
         remainingBalance.toFixed(2),
       ];
+      count++;
       arr.push(solution);
       quarterStart = getQuarterStart(quarterStart);
 
