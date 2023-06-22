@@ -43,7 +43,6 @@ function calculateCredit() {
   // Apply starting credit
   credit += startingCredit;
   remainingBalance = instrumentValue - credit;
-  count++;
 
   // Create an empty HTML table
   let table = document.createElement("table");
