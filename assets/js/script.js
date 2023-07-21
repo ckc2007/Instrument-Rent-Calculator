@@ -10,8 +10,8 @@ function calculateCredit() {
     document.getElementById("instrumentValue").value
   );
   let count = 0;
-  let credit = 0;
-  let remainingBalance = instrumentValue;
+  let credit = 0.0;
+  let remainingBalance = instrumentValue * 1.0;
   let arr = [];
 
   outputDiv.innerHTML = ""; // Clear previous output
@@ -61,26 +61,24 @@ function calculateCredit() {
   }
 
   // Populate the table rows with data
+
   for (let i = 1; i <= quarters; i++) {
     if (i < 5) {
       credit += rent * 1;
       remainingBalance = instrumentValue - credit;
-      
     } else if (i < 9) {
       credit += rent * 0.8;
       remainingBalance = instrumentValue - credit;
-      
     } else {
       credit += rent * 0.6;
       remainingBalance = instrumentValue - credit;
-      
     }
     if (remainingBalance >= 0) {
       solution = [
         count + 1, // Increment count after assigning the value
         quarterStart,
-        credit.toFixed(2),
-        remainingBalance.toFixed(2),
+        parseFloat(credit.toFixed(2)), // Convert to floating-point with two decimal places
+        parseFloat(remainingBalance.toFixed(2)), // Convert to floating-point with two decimal places
       ];
       count++;
       arr.push(solution);
