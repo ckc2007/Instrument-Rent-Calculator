@@ -77,8 +77,8 @@ function calculateCredit() {
       solution = [
         count + 1, // Increment count after assigning the value
         quarterStart,
-        parseFloat(credit.toFixed(2)), // Convert to floating-point with two decimal places
-        parseFloat(remainingBalance.toFixed(2)), // Convert to floating-point with two decimal places
+        credit.toFixed(2), // Convert to floating-point with two decimal places
+        remainingBalance.toFixed(2), // Convert to floating-point with two decimal places
       ];
       count++;
       arr.push(solution);
@@ -89,7 +89,8 @@ function calculateCredit() {
       let cells = solution;
       for (let j = 0; j < cells.length; j++) {
         let cell = row.insertCell();
-        cell.textContent = cells[j];
+        // Use Number.prototype.toFixed() to display numbers with two decimal places
+        cell.textContent = Number(cells[j]).toFixed(2);
       }
     }
   }
