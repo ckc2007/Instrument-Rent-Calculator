@@ -3,15 +3,15 @@ let outputDiv = document.getElementById("output");
 
 function calculateCredit() {
   let quarters = parseInt(document.getElementById("quarters").value);
-  let rent = parseFloat(
+  let rent = parseInt(
     document.querySelector('input[name="instrument"]:checked').value
   );
-  let instrumentValue = parseFloat(
+  let instrumentValue = parseInt(
     document.getElementById("instrumentValue").value
   );
   let count = 0;
-  let credit = 0.0;
-  let remainingBalance = instrumentValue * 1.0;
+  let credit = 0;
+  let remainingBalance = instrumentValue;
   let arr = [];
 
   outputDiv.innerHTML = ""; // Clear previous output
@@ -89,8 +89,7 @@ function calculateCredit() {
       let cells = solution;
       for (let j = 0; j < cells.length; j++) {
         let cell = row.insertCell();
-        // Use Number.prototype.toFixed() to display numbers with two decimal places
-        cell.textContent = Number(cells[j]).toFixed(2);
+        cell.textContent = cells[j];
       }
     }
   }
