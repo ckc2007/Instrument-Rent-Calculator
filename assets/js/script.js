@@ -3,10 +3,10 @@ let outputDiv = document.getElementById("output");
 
 function calculateCredit() {
   let quarters = parseInt(document.getElementById("quarters").value);
-  let rent = parseInt(
+  let rent = parseFloat(
     document.querySelector('input[name="instrument"]:checked').value
   );
-  let instrumentValue = parseInt(
+  let instrumentValue = parseFloat(
     document.getElementById("instrumentValue").value
   );
   let count = 0;
